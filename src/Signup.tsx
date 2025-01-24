@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import { AiOutlineLock, AiOutlineMail } from 'react-icons/ai';
+import { FcGoogle } from 'react-icons/fc';
 
 const Signup = () => {
     // Initialize Firebase authentication and navigation
@@ -11,7 +13,6 @@ const Signup = () => {
     const [authing, setAuthing] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
 
     // Function to handle sign-up with Google
@@ -32,12 +33,6 @@ const Signup = () => {
 
     // Function to handle sign-up with email and password
     const signUpWithEmail = async () => {
-        // Check if passwords match
-        if (password !== confirmPassword) {
-            setError('Passwords do not match');
-            return;
-        }
-
         setAuthing(true);
         setError('');
 
@@ -55,76 +50,67 @@ const Signup = () => {
     };
 
     return (
-        <div className='w-full h-screen flex'>
-            {/* Left half of the screen - background styling */}
-            <div className='w-1/2 h-full flex flex-col bg-[#282c34] items-center justify-center'>
-            </div>
-
-            {/* Right half of the screen - signup form */}
-            <div className='w-1/2 h-full bg-[#1a1a1a] flex flex-col p-20 justify-center'>
-                <div className='w-full flex flex-col max-w-[450px] mx-auto'>
+        <div className='w-full h-screen flex bg-[url(/src/assets/bg-login.svg)] bg-cover bg-center'>
+            <div className='w-full h-full flex flex-col p-[30px] justify-center'>
+                <div className='w-full flex flex-col max-w-[600px] mx-auto'>
                     {/* Header section with title and welcome message */}
-                    <div className='w-full flex flex-col mb-10 text-white'>
-                        <h3 className='text-4xl font-bold mb-2'>Sign Up</h3>
-                        <p className='text-lg mb-4'>Welcome! Please enter your information below to begin.</p>
+                    <div className='w-full flex flex-col mb-[150px] text-white text-center '>
+                        <h3 className='text-[51.05px] font-bold mb-7 '>Audio</h3>
+                        <p className='text-lg mb-4 text-[14px]'>It's modular and designed to last</p>
                     </div>
 
-                    {/* Input fields for email, password, and confirm password */}
-                    <div className='w-full flex flex-col mb-6'>
-                        <input
-                            type='email'
-                            placeholder='Email'
-                            className='w-full text-white py-2 mb-4 bg-transparent border-b border-gray-500 focus:outline-none focus:border-white'
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                        <input
-                            type='password'
-                            placeholder='Password'
-                            className='w-full text-white py-2 mb-4 bg-transparent border-b border-gray-500 focus:outline-none focus:border-white'
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                        <input
-                            type='password'
-                            placeholder='Re-Enter Password'
-                            className='w-full text-white py-2 mb-4 bg-transparent border-b border-gray-500 focus:outline-none focus:border-white'
-                            value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                        />
-                    </div>
+                    {/* Input fields for email and password */}
+                    <div className="w-full flex flex-col mb-6">
+                        {/* Input com ícone */}
+                        <div className="relative mb-4">
+                            <AiOutlineMail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+                            <input
+                                type="email"
+                                placeholder="Email"
+                                className="w-full h-[50px] text-black pl-12 py-2 px-4 bg-white border-b border-gray-500 focus:outline-none focus:border-white rounded-[10px]"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </div>
 
+                        <div className="relative">
+                            <AiOutlineLock className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+                            <input
+                                type="password"
+                                placeholder="Password"
+                                className="w-full h-[50px] text-black pl-12 py-2 px-4 bg-white border-b border-gray-500 focus:outline-none focus:border-white rounded-[10px]"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </div>
+                    </div>
+                    
                     {/* Display error message if there is one */}
                     {error && <div className='text-red-500 mb-4'>{error}</div>}
 
-                    {/* Button to sign up with email and password */}
+                    {/* Button to log in with email and password */}
                     <div className='w-full flex flex-col mb-4'>
                         <button
+                            className='w-full bg-[#0ACF83] text-white my-2 font-semibold rounded-[10px] p-4 text-center flex items-center justify-center cursor-pointer'
                             onClick={signUpWithEmail}
-                            disabled={authing}
-                            className='w-full bg-transparent border border-white text-white my-2 font-semibold rounded-md p-4 text-center flex items-center justify-center cursor-pointer'>
-                            Sign Up With Email and Password
+                            disabled={authing}>
+                            Sign Up
                         </button>
                     </div>
-
-                    {/* Divider with 'OR' text */}
-                    <div className='w-full flex items-center justify-center relative py-4'>
-                        <div className='w-full h-[1px] bg-gray-500'></div>
-                        <p className='text-lg absolute text-gray-500 bg-[#1a1a1a] px-2'>OR</p>
-                    </div>
-
-                    {/* Button to sign up with Google */}
-                    <button
+                    
+                    <div
                         onClick={signUpWithGoogle}
-                        disabled={authing}
-                        className='w-full bg-white text-black font-semibold rounded-md p-4 text-center flex items-center justify-center cursor-pointer mt-7'>
-                        Sign Up With Google
-                    </button>
+                        className="flex text-white gap-3 mt-3 justify-center mb-[96px]">
+
+                        <FcGoogle size={26} />
+                        <p className="font-bold text-lg">Sign up with Google</p>
+                    
+                    </div>
                 </div>
 
-                {/* Link to login page */}
+                {/* Link to sign up page */}
                 <div className='w-full flex items-center justify-center mt-10'>
-                    <p className='text-sm font-normal text-gray-400'>Already have an account? <span className='font-semibold text-white cursor-pointer underline'><a href='/login'>Log In</a></span></p>
+                    <p className='text-sm font-normal text-gray-400'>If you have an account? <span className='font-semibold text-white cursor-pointer underline'><a href='/signin'>Sign In here</a></span></p>
                 </div>
             </div>
         </div>

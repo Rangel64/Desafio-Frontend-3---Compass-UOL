@@ -110,7 +110,7 @@ const Login = () => {
 
                 {/* Link to sign up page */}
                 <div className='w-full flex items-center justify-center mt-10'>
-                    <p className='text-sm font-normal text-gray-400'>Don't have an account? <span className='font-semibold text-white cursor-pointer underline'><a href='/signup'>Sign Up</a></span></p>
+                    <p className='text-sm font-normal text-gray-400'>Didn’t have any account? <span className='font-semibold text-white cursor-pointer underline'><a href='/signup'>Sign Up here</a></span></p>
                 </div>
             </div>
         </div>
