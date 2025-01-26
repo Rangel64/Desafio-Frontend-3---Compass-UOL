@@ -14,6 +14,8 @@ import {
 } from '@heroicons/react/24/outline'
 import UserProfile from './components/user-profile'
 import { useNavigate } from 'react-router-dom';
+import { AiOutlineSearch } from 'react-icons/ai';
+import ProductCarousel from './components/product-carousel';
 
 const products = [
   { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#' },
@@ -32,6 +34,7 @@ export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [username, setUsername] = useState<string|undefined>();
   const [isLoading, setIsLoading] = useState(true);
+  const [search, setSearch] = useState("");
 
   const navigate = useNavigate();
   const auth = getAuth();
@@ -63,7 +66,7 @@ export default function HomePage() {
     };
 
     getName();
-  }, []);
+  });
 
   if (isLoading) {
     // Exibe um indicador de carregamento enquanto os dados não são carregados
@@ -71,8 +74,8 @@ export default function HomePage() {
   }
 
   return (
-    <body className="p-6">
-      <header className="bg-white">
+    <body className="">
+      <header className="bg-white p-6 sticky top-0 z-50">
         <nav aria-label="Global" className="mx-auto flex justify-between">
           <div className="flex">
             <button
@@ -176,18 +179,32 @@ export default function HomePage() {
         </Dialog>
       </header>
 
-      <div className='mt-7'>
-        <div className='flex'>
-          <p className='mr-2 text-[18px]'>Hi,</p>
-          <p className='mr-2 text-[18px]'>{username}</p>
+      <div className='mx-6'>
+        <div className='mt-2'>
+          <div className='flex'>
+            <p className='mr-2 text-[18px]'>Hi,</p>
+            <p className='mr-2 text-[18px]'>{username}</p>
+          </div>
         </div>
-      </div>
 
-      <div className='mt-[5px]'>
-        <div className='flex'>
-          <p className='mr-2 text-[24px] font-bold'>What are you looking for today?</p>
+        <div className='mt-[5px]'>
+          <div className='flex'>
+            <p className='mr-2 text-[24px] font-bold'>What are you looking for today?</p>
+          </div>
         </div>
       </div>
+  
+      <div className="relative my-6 mx-6">
+        <AiOutlineSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+          <input
+              type="text"
+              placeholder="Search headphone"
+              className="w-full h-[50px] text-black pl-12 py-2 px-4 bg-white border border-gray-500 rounded-[10px]"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+          />
+      </div>
+      <ProductCarousel/>
 
     </body>
     
