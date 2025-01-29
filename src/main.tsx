@@ -7,6 +7,7 @@ import './index.css'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { initializeApp } from "firebase/app";
 import AuthRoute from './AuthRoute.tsx'
+import SearchPage from './pages/SearchPage.tsx'
 
 const firebaseConfig = {
   apiKey: "AIzaSyCar3tCDpiRLXp6-vjne8_pCd4yNNIHHJs",
@@ -28,6 +29,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Route path="/" element={<AuthRoute><App /></AuthRoute>} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/search" element={<SearchPage />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
