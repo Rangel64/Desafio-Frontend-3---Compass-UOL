@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { Product } from "../models/Product";
+import ProductCardSmall from "./ProductCardSmall";
 
 
 export default function ProductCarousel() {
@@ -103,26 +104,8 @@ export default function ProductCarousel() {
         {loading ? (
             <p>Loading...</p>
         ) : products.length > 0 ? (
-            products.map((product, index) => (
-            <div
-                className="bg-white p-4 rounded-lg shadow-md flex flex-col gap-y-2 flex-shrink-0"
-                style={{
-                width: "155px"}}
-                key={index}
-            >
-                <img
-                  src={product.img}
-                  alt={product.name}
-                  className="object-contain"
-                  style={{ width: "135px", height: "135px" }}
-                />
-                <h3 className="text-gray-800 text-[14px] ">
-                  {product.name}
-                </h3>
-                <p className="font-bold text-black text-[12px]">
-                  USD {product.price}
-                </p>
-            </div>
+            products.map((product) => (
+            <ProductCardSmall product={product}/>
             ))
         ) : (
             <p>No products available</p>

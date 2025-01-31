@@ -2,13 +2,9 @@ import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ArrowLeftIcon, ShoppingCartIcon } from "@heroicons/react/24/outline";
 import { SlEqualizer } from "react-icons/sl";
-import { Product, Review } from "../models/Product";
+import { Product} from "../models/Product";
+import ProductCard from "../components/ProductCard";
 
-function calculateAverageRating(reviews : Review[]) {
-  if (reviews.length === 0) return 0; // Sem reviews, retorna 0
-  const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
-  return (totalRating / reviews.length).toFixed(1); // Retorna a média com 1 casa decimal
-}
 
 export default function AllProducts() {
   const navigate = useNavigate();
@@ -41,7 +37,7 @@ export default function AllProducts() {
 
     fetchProducts();
   }, []);
-
+  
   const toggleFilter = () => {
     setIsFilterOpen(!isFilterOpen);
   };
@@ -90,9 +86,7 @@ export default function AllProducts() {
               <ArrowLeftIcon aria-hidden="true" className="h-6 w-6" />
             </button>
           </div>
-          <div className="flex">
-            <h1 className="text-[19.05px] ml-[10px] font-bold ">Search</h1>
-          </div>
+          
           <button
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
@@ -102,13 +96,13 @@ export default function AllProducts() {
         </nav>
       </header>
 
-      <div className="p-6">
-        <div className="flex justify-between items-center mb-6">
+      <div className="">
+        <div className="flex justify-between items-center mb-6 p-6">
           <h1 className="text-2xl font-bold">All Products</h1>
         </div>
 
         {/* Botão de Filtro */}
-        <div className="flex justify-center items-center h-full mb-10">
+        <div className="flex justify-center items-center h-full mb-10 p-6">
           <button
             onClick={toggleFilter}
             className="flex items-center px-4 py-2 border rounded-lg w-full justify-center"
@@ -129,7 +123,7 @@ export default function AllProducts() {
             </div>
 
             {/* Categoria */}
-            <div className="mb-4">
+            <div className="mb-4 ">
               <h3 className="text-md font-semibold mb-2">Category</h3>
               <div className="flex space-x-4">
                 <button
@@ -166,7 +160,7 @@ export default function AllProducts() {
             </div>
 
             {/* Ordenar por */}
-            <div className="mb-4">
+            <div className="mb-4 ">
               <h3 className="text-md font-semibold mb-2">Sort By</h3>
               <div className="grid grid-cols-2 gap-2">
                 {[
@@ -202,33 +196,9 @@ export default function AllProducts() {
         )}
 
         {/* Grade de Produtos */}
-        <div className="grid grid-cols-2 gap-4">
-          {filteredProducts.map((product) => (
-            <div
-              key={product.id}
-              className="bg-white p-4 border rounded-lg shadow-sm flex flex-col justify-between"
-            >
-              <img
-                src={product.img}
-                alt={product.name}
-                className="w-full h-40 object-cover mb-4 rounded-lg"
-              />
-              <div>
-                <p className="font-bold text-lg">{product.name}</p>
-                <p className="text-gray-700 font-semibold">
-                  USD {product.price.toFixed(2)}
-                </p>
-              </div>
-              <div className="flex items-center justify-between mt-4">
-                <div className="flex items-center">
-                  <span className="text-yellow-500 text-lg">★</span>
-                  <p className="text-sm text-gray-700 ml-2">
-                    {calculateAverageRating(product.reviews)} ★ |{" "}
-                    {product.reviews.length} Reviews
-                  </p>
-                </div>
-              </div>
-            </div>
+        <div className="grid grid-cols-2 gap-4 bg-gray-100 min-h-screen h-auto rounded-t-3xl p-6">
+          {filteredProducts.map((product: Product) => (
+            <ProductCard product={product}/>
           ))}
         </div>
       </div>
