@@ -10,6 +10,8 @@ import AuthRoute from './AuthRoute.tsx'
 import SearchPage from './pages/SearchPage.tsx'
 import AllProducts from './pages/AllProducts.tsx'
 import ProductInfo from './pages/ProductInfo.tsx'
+import { CartProvider } from './context/CartContext.tsx'
+import ShoppingCart from './pages/Cart.tsx'
 
 const firebaseConfig = {
   apiKey: "AIzaSyCar3tCDpiRLXp6-vjne8_pCd4yNNIHHJs",
@@ -26,16 +28,19 @@ initializeApp(firebaseConfig);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Router>
-      <Routes>
-        <Route path="/" element={<AuthRoute><App /></AuthRoute>} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/search" element={<SearchPage />} />
-        <Route path="/all-products" element={<AllProducts />} />
-        <Route path="/product-info" element={<ProductInfo/>} />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-    </Router>
+    <CartProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<AuthRoute><App /></AuthRoute>} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/search" element={<SearchPage />} />
+          <Route path="/all-products" element={<AllProducts />} />
+          <Route path="/product-info" element={<ProductInfo/>} />
+          <Route path="/shopping-cart" element={<ShoppingCart/>} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </Router>
+    </CartProvider>
   </React.StrictMode>
 )

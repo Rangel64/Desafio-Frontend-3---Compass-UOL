@@ -1,18 +1,20 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { Product, Review } from "../models/Product";
+import { Product} from "../models/Product";
 
 import { useEffect, useState } from "react";
 import ProductCardSmall from "../components/ProductCardSmall";
 import { ArrowLeftIcon, ShoppingCartIcon } from "@heroicons/react/24/outline";
+import { useCart } from "../context/CartContext";
 
 
 export default function ProductInfo() {
     const navigate = useNavigate();
     const location = useLocation();
-    const [product, setProduct] = useState<Product>(location.state.product);
+    const [product] = useState<Product>(location.state.product);
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
     const [activeOption, setActiveOption] = useState("Overview");
+    const { addToCart } = useCart();
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -35,7 +37,10 @@ export default function ProductInfo() {
         fetchProducts();
     }, []);
 
-
+    const handleAddToCart = () => {
+        addToCart(product); // 'product' vem do estado atual
+        alert(`${product.name} added to cart!`);
+      };
 
     return (
 
@@ -55,6 +60,7 @@ export default function ProductInfo() {
                 <button
                     type="button"
                     className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+                    onClick={() => navigate("/shopping-cart")}
                 >
                     <ShoppingCartIcon aria-hidden="true" className="h-6 w-6" />
                 </button>
@@ -160,7 +166,10 @@ export default function ProductInfo() {
             
             
             <div className="bottom-5 left-0 right-0 px-5 p-10">
-                <button className="w-full bg-green-600 text-white text-lg font-bold py-3 rounded-lg">
+                <button 
+                    className="w-full bg-green-600 text-white text-lg font-bold py-3 rounded-lg" 
+                    onClick={handleAddToCart}
+                >
                     Add To Cart
                 </button>
             </div>
