@@ -38,18 +38,17 @@ export default function ProductCarousel() {
   );
 
   return (
-    <div className="bg-gray-100 min-h-screen h-auto rounded-t-3xl p-5">
+    <div className="bg-gray-100 h-auto rounded-t-3xl p-5">
       <div className="w-[95%] m-auto">
         {/* Options */}
-        <nav className="flex gap-5 pt-5">
+        <nav className="flex gap-1 pt-5">
           {["Headphones", "Headsets"].map((option) => (
             <button
               key={option}
-              className={`px-4 py-1 rounded-2xl font-bold ${
-                activeOption === option
-                  ? "bg-green-500 text-white"
-                  : "bg-gray-200 text-gray-500"
-              }`}
+              className={`px-4 py-1 rounded-2xl text-[14px] ${activeOption === option
+                  ? "bg-[#0ACF83] text-white"
+                  : "bg-gray-100 text-gray-500"
+                }`}
               onClick={() => setActiveOption(option)}
             >
               {option}
@@ -58,7 +57,7 @@ export default function ProductCarousel() {
         </nav>
 
         {/* Carousel */}
-        <div className="flex overflow-x-scroll mt-5 space-x-5 px-2">
+        <div className="flex overflow-x-scroll mt-5 space-x-5">
           {loading ? (
             <div className="flex justify-center items-center w-full">
               <p>Loading...</p>
@@ -66,10 +65,10 @@ export default function ProductCarousel() {
           ) : filteredProducts.length > 0 ? (
             filteredProducts.map((product, index) => (
               <div
-                className="flex-shrink-0 w-[326px] h-[178px] p-5 bg-white rounded-xl flex justify-between items-center shadow"
+                className="flex-shrink-0 w-[326px] h-[178px] bg-white rounded-xl flex justify-between items-center shadow gap-3 px-[24px] py-[20px]"
                 key={index}
               >
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col h-full justify-between">
                   <h3 className="text-2xl font-bold text-gray-900">
                     {product.name}
                   </h3>
@@ -80,7 +79,7 @@ export default function ProductCarousel() {
                 <img
                   src={product.img}
                   alt={product.name}
-                  className="w-24 h-24 object-contain"
+                  className="w-[117px] h-[135px] object-contain"
                 />
               </div>
             ))
@@ -92,24 +91,24 @@ export default function ProductCarousel() {
         </div>
 
         {/* Featured Products */}
-        <div className="flex justify-between mt-5">
-          <h3 className="text-lg font-bold">Featured Products</h3>
-          <button onClick={()=>navigate("/all-products",{ state: { products } })}>
-            <p className="text-gray-500 cursor-pointer">See All</p>
+        <div className="flex justify-between mt-5 ">
+          <h3 className="text-[16px] ">Featured Products</h3>
+          <button onClick={() => navigate("/all-products", { state: { products } })}>
+            <p className="text-gray-500 cursor-pointer text-[14px]">See All</p>
           </button>
         </div>
 
         {/* Product Cards */}
-        <div className="flex overflow-x-scroll mt-5 space-x-5 px-2">
-        {loading ? (
+        <div className="flex overflow-x-scroll mt-5 space-x-5 ">
+          {loading ? (
             <p>Loading...</p>
-        ) : products.length > 0 ? (
+          ) : products.length > 0 ? (
             products.map((product) => (
-            <ProductCardSmall product={product}/>
+              <ProductCardSmall product={product} />
             ))
-        ) : (
+          ) : (
             <p>No products available</p>
-        )}
+          )}
         </div>
       </div>
     </div>

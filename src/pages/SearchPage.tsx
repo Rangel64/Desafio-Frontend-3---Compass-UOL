@@ -39,9 +39,11 @@ export default function SearchPage() {
     fetchProducts();
   }, []);
 
-  const filteredProducts = products.filter((product) =>
-    product.name?.toLowerCase().includes(search.toLowerCase())
-  );
+  const filteredProducts = search.trim()
+  ? products.filter((product) =>
+      product.name?.toLowerCase().includes(search.toLowerCase())
+    )
+  : [];
 
 
   if (loading) {
@@ -68,7 +70,7 @@ export default function SearchPage() {
 
           <button
             type="button"
-            onClick={() => {}}
+            onClick={() => navigate("/shopping-cart")}
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
           >
             <ShoppingCartIcon aria-hidden="true" className="h-6 w-6" />
@@ -96,22 +98,22 @@ export default function SearchPage() {
               
               <li className="flex flex-col justify-between mb-[15px] h-full">
                 {/* Imagem e Informações */}
-                <div className="flex items-center h-full">
+                <div className="flex items-center h-full" onClick={()=>navigate('/product-info', { state: { product } })}>
                   {/* Imagem do Produto */}
                   <img
                     src={product.img || "https://via.placeholder.com/50"}
                     alt={product.name || "Unnamed Product"}
-                    className="w-20 h-20 mr-4 rounded-md object-cover"
+                    className="w-[75px] h-[75px] mr-4 rounded-md object-cover"
                   />
                   {/* Informações do Produto */}
                   <div className="flex flex-col justify-between flex-grow">
-                    <p className="font-bold text-lg">{product.name || "Unnamed Product"}</p>
-                    <p className="text-gray-700 font-semibold">USD {product.price?.toFixed(2) || "Price not available"}</p>
+                    <p className=" text-[16px]">{product.name || "Unnamed Product"}</p>
+                    <p className="text-[14px] font-semibold">USD {product.price?.toFixed(2) || "Price not available"}</p>
                     {/* Avaliações e Botão */}
                     <div className="flex items-center justify-between mt-2">
                       <div className="flex items-center">
                         <span className="text-yellow-500 text-lg">★</span>
-                        <p className="text-sm text-gray-700 ml-2">
+                        <p className="text-sm text-gray-700 ml-1">
                           {calculateAverageRating(product.reviews)} {product.reviews?.length || 0} Reviews
                         </p>
                       </div>
@@ -133,29 +135,29 @@ export default function SearchPage() {
         <p className="font-bold text-lg mb-4">Popular Products</p>
 
         <ul className="mt-4">
-          {filteredProducts
+          {products
             .sort((a, b) => b.popularity - a.popularity) // Ordena por popularidade (descendente)
             .slice(0, 3) // Seleciona os 3 primeiros
             .map((product, index) => (
               <li key={product.id || index} className="flex flex-col justify-between mb-[15px] h-full">
                 {/* Imagem e Informações */}
-                <div className="flex items-center h-full">
+                <div className="flex items-center h-full" onClick={()=>navigate('/product-info', { state: { product } })}>
                   {/* Imagem do Produto */}
                   <img
                     src={product.img || "https://via.placeholder.com/50"}
                     alt={product.name || "Unnamed Product"}
-                    className="w-20 h-20 mr-4 rounded-md object-cover"
+                    className="w-[75px] h-[75px] mr-4 rounded-md object-cover"
                   />
                   {/* Informações do Produto */}
                   <div className="flex flex-col justify-between flex-grow">
-                    <p className="font-bold text-lg">{product.name || "Unnamed Product"}</p>
-                    <p className="text-gray-700 font-semibold">USD {product.price?.toFixed(2) || "Price not available"}</p>
+                    <p className=" text-[16px]">{product.name || "Unnamed Product"}</p>
+                    <p className="text-[14px] font-semibold">USD {product.price?.toFixed(2) || "Price not available"}</p>
                     {/* Avaliações e Botão */}
                     <div className="flex items-center justify-between mt-2">
                       <div className="flex items-center">
                         <span className="text-yellow-500 text-lg">★</span>
-                        <p className="text-sm text-gray-700 ml-2">
-                          {calculateAverageRating(product.reviews)} ★ | {product.reviews?.length || 0} Reviews
+                        <p className="text-sm text-gray-700 ml-1">
+                          {calculateAverageRating(product.reviews)} {product.reviews?.length || 0} Reviews
                         </p>
                       </div>
                       <button className="text-gray-400">

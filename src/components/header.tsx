@@ -43,9 +43,9 @@ export default function Header({ onLogout }: { onLogout: () => void }) {
           </button>
         </div>
 
-        <div className="flex">
+        <div className="flex items-center">
           <a href="#" className="-m-1.5 p-1.5">
-            <img alt="" src="src/assets/logo.svg" className="h-8 w-auto" />
+            <img alt="" src="src/assets/logo.svg" className="h-[20px] w-[20px]" />
           </a>
           <h1 className="text-[19.05px] ml-[10px] font-bold ">Audio</h1>
         </div>

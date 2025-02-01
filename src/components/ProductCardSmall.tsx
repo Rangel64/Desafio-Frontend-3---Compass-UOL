@@ -16,7 +16,7 @@ export default function ProductCardSmall({ product }: { product: Product }) {
                 src={product.img}
                 alt={product.name}
                 className="object-contain"
-                style={{ width: "135px", height: "135px" }}
+                style={{ width: "135px", height: "125px" }}
             />
             <div>
                 <h3 className="text-gray-800 text-[14px] ">

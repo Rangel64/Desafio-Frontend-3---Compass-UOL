@@ -72,12 +72,12 @@ export default function HomePage() {
         </div>
       </div>
   
-      <div className="relative my-6 mx-6">
+      <div className="relative mt-6 mb-9 mx-6">
         <AiOutlineSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
           <input
               type="text"
               placeholder="Search headphone"
-              className="w-full h-[50px] text-black pl-12 py-2 px-4 bg-white border border-gray-500 rounded-[10px]"
+              className="w-full h-[50px] text-black pl-12 py-2 px-4 bg-white border border-gray-300 rounded-[10px]"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               onFocus={handleFocus}

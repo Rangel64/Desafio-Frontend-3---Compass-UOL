@@ -56,13 +56,13 @@ const Login = () => {
                     {/* Header section with title and welcome message */}
                     <div className='w-full flex flex-col mb-[150px] text-white text-center '>
                         <h3 className='text-[51.05px] font-bold mb-7 '>Audio</h3>
-                        <p className='text-lg mb-4 text-[14px]'>It's modular and designed to last</p>
+                        <p className='text-lg mb-4 text-[14px] font-bold'>It's modular and designed to last</p>
                     </div>
 
                     {/* Input fields for email and password */}
-                    <div className="w-full flex flex-col mb-6">
+                    <div className="w-full flex flex-col mb-6 ">
                         {/* Input com ícone */}
-                        <div className="relative mb-4">
+                        <div className="relative mb-5">
                             <AiOutlineMail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
                             <input
                                 type="email"
@@ -73,7 +73,7 @@ const Login = () => {
                             />
                         </div>
 
-                        <div className="relative">
+                        <div className="relative mb-2">
                             <AiOutlineLock className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
                             <input
                                 type="password"
@@ -82,6 +82,9 @@ const Login = () => {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
+                        </div>
+                        <div className="flex justify-center">
+                            <p className="font-bold text-[14px] text-white">Forgot Password</p>
                         </div>
                     </div>
                     
@@ -110,7 +113,7 @@ const Login = () => {
 
                 {/* Link to sign up page */}
                 <div className='w-full flex items-center justify-center mt-10'>
-                    <p className='text-sm font-normal text-gray-400'>Didn’t have any account? <span className='font-semibold text-white cursor-pointer underline'><a href='/signup'>Sign Up here</a></span></p>
+                    <p className='text-sm font-normal text-gray-400'>Didn’t have any account? <span className='font-semibold text-white cursor-pointer underline'><a href='/signup' className='text-[#0ACF83]'>Sign Up here</a></span></p>
                 </div>
             </div>
         </div>
