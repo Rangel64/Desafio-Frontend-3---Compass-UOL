@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import ProductCardSmall from "../components/ProductCardSmall";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 import { useCart } from "../context/CartContext";
-import CartButton from "../components/cartButton";
+import CartButton from "../components/CartButton";
 
 
 

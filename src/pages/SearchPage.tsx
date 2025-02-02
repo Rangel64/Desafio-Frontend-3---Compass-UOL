@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeftIcon, EllipsisVerticalIcon } from "@heroicons/react/24/outline";
 import { AiOutlineSearch } from "react-icons/ai";
 import { Product, Review } from "../models/Product";
-import CartButton from "../components/cartButton";
+import CartButton from "../components/CartButton";
 
 
 

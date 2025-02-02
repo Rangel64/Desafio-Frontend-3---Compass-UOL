@@ -4,7 +4,7 @@ import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 import { SlEqualizer } from "react-icons/sl";
 import { Product } from "../models/Product";
 import ProductCard from "../components/ProductCard";
-import CartButton from "../components/cartButton";
+import CartButton from "../components/CartButton";
 import { AnimatePresence, motion } from "framer-motion";
 
 
