@@ -38,7 +38,7 @@ export default function ProductCarousel() {
   );
 
   return (
-    <div className="bg-gray-100 h-auto rounded-t-3xl p-5">
+    <div className="bg-[#F3F3F3] h-auto rounded-t-3xl p-5">
       <div className="w-[95%] m-auto">
         {/* Options */}
         <nav className="flex gap-1 pt-5">
@@ -46,8 +46,8 @@ export default function ProductCarousel() {
             <button
               key={option}
               className={`px-4 py-1 rounded-2xl text-[14px] ${activeOption === option
-                  ? "bg-[#0ACF83] text-white"
-                  : "bg-gray-100 text-gray-500"
+                ? "bg-[#0ACF83] text-white"
+                : "bg-gray-100 text-gray-500"
                 }`}
               onClick={() => setActiveOption(option)}
             >
@@ -67,14 +67,17 @@ export default function ProductCarousel() {
               <div
                 className="flex-shrink-0 w-[326px] h-[178px] bg-white rounded-xl flex justify-between items-center shadow gap-3 px-[24px] py-[20px]"
                 key={index}
+                onClick={() => navigate('/product-info', { state: { product } })}
               >
                 <div className="flex flex-col h-full justify-between">
                   <h3 className="text-2xl font-bold text-gray-900">
                     {product.name}
                   </h3>
-                  <button className="flex items-center gap-2 text-green-500 font-bold">
+                  <span
+                    className="flex items-center gap-2 text-green-500 font-bold"
+                    >
                     Shop now <FaArrowRight size={16} />
-                  </button>
+                  </span>
                 </div>
                 <img
                   src={product.img}
@@ -103,7 +106,8 @@ export default function ProductCarousel() {
           {loading ? (
             <p>Loading...</p>
           ) : products.length > 0 ? (
-            products.map((product) => (
+            products.sort((a, b) => b.popularity - a.popularity) // Ordena por popularidade (descendente)
+            .slice(0, 5).map((product) => (
               <ProductCardSmall product={product} />
             ))
           ) : (

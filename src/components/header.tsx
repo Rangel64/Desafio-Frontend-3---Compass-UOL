@@ -11,7 +11,7 @@ import {
   XMarkIcon,
   ChevronDownIcon,
 } from '@heroicons/react/24/outline';
-import UserProfile from './user-profile';
+import UserProfile from './UserPorfile';
 
 const products = [
   { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#' },

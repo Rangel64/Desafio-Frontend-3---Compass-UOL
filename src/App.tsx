@@ -3,8 +3,9 @@ import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 
 import { useNavigate } from 'react-router-dom';
 import { AiOutlineSearch } from 'react-icons/ai';
-import ProductCarousel from './components/product-carousel';
+import ProductCarousel from './components/ProductCarousel';
 import Header from './components/header';
+
 
 
 export default function HomePage() {

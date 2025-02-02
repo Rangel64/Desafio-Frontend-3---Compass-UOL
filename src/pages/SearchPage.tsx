@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { ArrowLeftIcon, ShoppingCartIcon, EllipsisVerticalIcon } from "@heroicons/react/24/outline";
+import { ArrowLeftIcon, EllipsisVerticalIcon } from "@heroicons/react/24/outline";
 import { AiOutlineSearch } from "react-icons/ai";
 import { Product, Review } from "../models/Product";
+import CartButton from "../components/cartButton";
+
+
 
 
 function calculateAverageRating(reviews: Review[]){
@@ -68,13 +71,7 @@ export default function SearchPage() {
             <h1 className="text-[19.05px] ml-[10px] font-bold ">Search</h1>
           </div>
 
-          <button
-            type="button"
-            onClick={() => navigate("/shopping-cart")}
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-          >
-            <ShoppingCartIcon aria-hidden="true" className="h-6 w-6" />
-          </button>
+          <CartButton/>
         </nav>
       </header>
 
@@ -96,7 +93,7 @@ export default function SearchPage() {
           <ul className="mt-4 max-h-[500px] overflow-y-auto">
             {filteredProducts.map((product) => (
               
-              <li className="flex flex-col justify-between mb-[15px] h-full">
+              <li className="flex flex-col justify-between mb-[25px] h-full">
                 {/* Imagem e Informações */}
                 <div className="flex items-center h-full" onClick={()=>navigate('/product-info', { state: { product } })}>
                   {/* Imagem do Produto */}
@@ -134,12 +131,12 @@ export default function SearchPage() {
       <div className="px-6">
         <p className="font-bold text-lg mb-4">Popular Products</p>
 
-        <ul className="mt-4">
+        <ul className="mt-4 ">
           {products
             .sort((a, b) => b.popularity - a.popularity) // Ordena por popularidade (descendente)
             .slice(0, 3) // Seleciona os 3 primeiros
             .map((product, index) => (
-              <li key={product.id || index} className="flex flex-col justify-between mb-[15px] h-full">
+              <li key={product.id || index} className="flex flex-col justify-between mb-[25px] h-full">
                 {/* Imagem e Informações */}
                 <div className="flex items-center h-full" onClick={()=>navigate('/product-info', { state: { product } })}>
                   {/* Imagem do Produto */}
