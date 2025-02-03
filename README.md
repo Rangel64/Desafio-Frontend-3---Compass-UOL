@@ -20,25 +20,25 @@ Este projeto tem como objetivo desenvolver um frontend de um e-commerce de teste
 
 ## Estrutura do Projeto
 
-src
-├── assets                # Arquivos estáticos (imagens, ícones, etc.)
+src/
+├── assets/                # Arquivos estáticos (imagens, ícones, etc.)
 │   ├── avatar.svg
 │   ├── bg-login.svg
 │   ├── logo.svg
 │   ├── phone.png
 │   └── react.svg
-├── components            # Componentes reutilizáveis da aplicação
+├── components/            # Componentes reutilizáveis da aplicação
 │   ├── CartButton.tsx
 │   ├── header.tsx
 │   ├── ProductCard.tsx
 │   ├── ProductCardSmall.tsx
 │   ├── ProductCarousel.tsx
 │   └── UserPorfile.tsx
-├── context               # Contextos para gerenciamento de estados
+├── context/               # Contextos para gerenciamento de estados
 │   └── CartContext.tsx
-├── models                # Interfaces e tipos de dados
+├── models/                # Interfaces e tipos de dados
 │   └── Product.ts
-├── pages                 # Páginas da aplicação
+├── pages/                 # Páginas da aplicação
 │   ├── AllProducts.tsx
 │   ├── Cart.tsx
 │   ├── Productinfo.tsx
