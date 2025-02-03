@@ -17,7 +17,7 @@ export default function ProductInfo() {
     const [loading, setLoading] = useState(true);
     const [activeOption, setActiveOption] = useState("Overview");
     const { addToCart } = useCart();
-    const productImages: string[] = [product!.img, "src/assets/phone.png"];
+    const productImages: string[] = [product!.img, "/phone.png"];
 
 
     useEffect(() => {
