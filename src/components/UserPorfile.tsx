@@ -23,7 +23,7 @@ export default function UserProfile() {
         <span className="sr-only">User Profile</span>
         <img
           alt="User Profile"
-          src={userPhoto}
+          src={userPhoto??"src/assets/avatar.svg"}
           className="h-8 w-auto rounded-full"
         />
       </a>

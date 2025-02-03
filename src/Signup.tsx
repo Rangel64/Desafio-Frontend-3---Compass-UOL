@@ -114,7 +114,7 @@ const Signup = () => {
 
                 {/* Link to sign up page */}
                 <div className='w-full flex items-center justify-center mt-10'>
-                    <p className='text-sm font-normal text-gray-400'>If you have an account? <span className='font-semibold text-white cursor-pointer underline'><a href='/signin' className='text-[#0ACF83]'>Sign In here</a></span></p>
+                    <p className='text-sm font-normal text-gray-400'>If you have an account? <span className='font-semibold text-white cursor-pointer underline'><a onClick={()=>navigate("/login")} className='text-[#0ACF83]'>Sign In here</a></span></p>
                 </div>
             </div>
         </div>
