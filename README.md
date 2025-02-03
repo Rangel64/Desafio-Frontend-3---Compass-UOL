@@ -19,7 +19,7 @@ Este projeto tem como objetivo desenvolver um frontend de um e-commerce de teste
 - Tailwind CSS: Framework CSS utilitário para estilização rápida e responsiva.
 
 ## Estrutura do Projeto
-
+```
 src/
 ├── assets/                # Arquivos estáticos (imagens, ícones, etc.)
 │   ├── avatar.svg
@@ -63,7 +63,7 @@ src/
 ├── tsconfig.node.json    # Configuração do TypeScript para o Node.js
 ├── vercel.json           # Configuração para deploy na Vercel
 └── vite.config.ts        # Configuração do Vite
-
+```
 ## Como Executar o Projeto
 
 1. Clone o repositório: `git clone https://github.com/Rangel64/Desafio-Frontend-3---Compass-UOL.git`
